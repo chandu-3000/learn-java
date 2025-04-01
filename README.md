@@ -2,6 +2,8 @@
 
 # Links
 * [Learn Collection framework](https://github.com/AnirudhDas/AniruddhaDas.github.io/blob/master/Java/CollectionFrameworkInJava/CollectionFrameworkInJava.md)
+* Use ArrayDequeue for both Queue and Stack, just you need to remember 6 functions. (queue/stack push -> addLast, addFirst, queue/stack pop -> removeFirst/removeLast, queue/stack top -> getFirst, getLast.
+  
 ## How Java Works.
 * Java is a object-oriented, high-level programming language
 * Java is a WORA (Write Once Run Anywhere).
