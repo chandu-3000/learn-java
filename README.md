@@ -1,5 +1,7 @@
 # Learn JAVA
 
+# Links
+* [Collection framwork] (https://github.com/AnirudhDas/AniruddhaDas.github.io/blob/master/Java/CollectionFrameworkInJava/CollectionFrameworkInJava.md)
 ## How Java Works.
 * Java is a object-oriented, high-level programming language
 * Java is a WORA (Write Once Run Anywhere).
