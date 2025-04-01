@@ -21,3 +21,17 @@
 * If you want to include a class from different directory, then we should use **import** and in that .java file we use **package <class_name>** statement.
 * final is nothing but constant.
 * If you make your class as final, then you are stopping inheritance on that class.
+* notation Class<?> in Java is a way to represent a class object of an unknown type ( Unknown type).
+* Class<T>: Represents a class object of type T (type parameter used in generic programming(like c++ template). 
+### Object class
+The Object class in Java is the root of the class hierarchy. Every class in Java is a descendant, directly or indirectly, of the Object class. This means that all classes inherit the methods of the Object class. Here are some key methods provided by the Object class:
+* equals(Object obj): Determines whether another object is equal to this one.
+* hashCode(): Returns a hash code value for the object.
+* toString(): Returns a string representation of the object.
+* clone(): Creates and returns a copy of this object.
+* finalize(): Called by the garbage collector on an object when garbage collection determines that there are no more references to the object.
+* getClass(): Returns the runtime class of this object.
+* notify(): Wakes up a single thread that is waiting on this object's monitor.
+* notifyAll(): Wakes up all threads that are waiting on this object's monitor.
+* wait(): Causes the current thread to wait until another thread invokes the notify() method or the notifyAll() method for this object.
+
