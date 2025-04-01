@@ -17,3 +17,5 @@
 * If you want to call Same Class constructor then this() call has to be made.
 * There is no header files funda in Java, everything will be in a .class files.
 * If you want to include a class from different directory, then we should use **import** and in that .java file we use **package <class_name>** statement.
+* final is nothing but constant.
+* If you make your class as final, then you are stopping inheritance on that class.
