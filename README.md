@@ -15,3 +15,5 @@
 * Java doesn't support multiple inheritance, instead it supports multi level inheritance.
 * To call Super class constructors, we should call "super()" function, if you want to call parameterized constructor of Super Class then pass the same args to the super() function call.
 * If you want to call Same Class constructor then this() call has to be made.
+* There is no header files funda in Java, everything will be in a .class files.
+* If you want to include a class from different directory, then we should use **import** and in that .java file we use **package <class_name>** statement.
