@@ -1,5 +1,5 @@
 # Learn JAVA
-
+* [A Good resources for learning java things](https://gyansetu-core-java-for-java.gitbook.io/project)
 # Links
 * [Learn Collection framework](https://github.com/AnirudhDas/AniruddhaDas.github.io/blob/master/Java/CollectionFrameworkInJava/CollectionFrameworkInJava.md)
 * Use ArrayDequeue for both Queue and Stack, just you need to remember 6 functions. (queue/stack push -> addLast, addFirst, queue/stack pop -> removeFirst/removeLast, queue/stack top -> getFirst, getLast.
