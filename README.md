@@ -97,5 +97,9 @@ The Object class in Java is the root of the class hierarchy. Every class in Java
   - **G1 GC**: The default GC since **Java 9**, designed to provide **balanced performance** for **low-latency applications**.
   - **ZGC**: A **low-latency GC** suitable for **large heaps**, aiming for **very short pause times**.
   - **Shenandoah**: A GC focused on **low pause times** with a **concurrent** collection strategy.
+  * To use specific GC, we can use such below command
+  ```
+  java -Xms512m -Xmx1024m -XX:+UseG1GC -XX:MaxGCPauseMillis=200 -Xlog:gc* -jar app.jar
+  ```
   #### Conclusion
   Choosing the right GC for your application can significantly impact performance, especially in large-scale or latency-sensitive systems.
