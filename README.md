@@ -63,11 +63,10 @@ The Object class in Java is the root of the class hierarchy. Every class in Java
 * Survivor Spaces (S0 and S1): After surviving a few collections, objects are moved here temporarily.
 * Old Generation: Where long-living objects go (objects that survived multiple cycles).
 - #### GC Types
-
-| Type      | What It Cleans      | Frequency        | Cost    | Pause  |
-|-----------|---------------------|------------------|---------|--------|
-| **Minor GC** | Young Gen only      | Happens often    | Fast    | Short  |
-| **Major GC** | Old Gen (and full heap) | Less frequent    | Slower  | Long   |
+  | Type      | What It Cleans      | Frequency        | Cost    | Pause  |
+  |-----------|---------------------|------------------|---------|--------|
+  | **Minor GC** | Young Gen only      | Happens often    | Fast    | Short  |
+  | **Major GC** | Old Gen (and full heap) | Less frequent    | Slower  | Long   |
 
 - **Minor GC**: 
     - Focuses on cleaning up the **Young Generation** (new objects).
@@ -84,11 +83,11 @@ The Object class in Java is the root of the class hierarchy. Every class in Java
    - Major GC pause: can be longer (hundreds of ms or more)
 * This is why GC tuning matters in low-latency apps.
 
- #### Garbage collector types
-| GC Type        | Best For                             | JVM Option                |
-|----------------|--------------------------------------|---------------------------|
-| **Serial GC**  | Small apps, single-threaded         | `-XX:+UseSerialGC`         |
-| **Parallel GC**| High throughput apps                | `-XX:+UseParallelGC`       |
-| **G1 GC**      | Balanced needs (default since Java 9) | `-XX:+UseG1GC`            |
-| **ZGC**        | Very low pause time, large heaps    | `-XX:+UseZGC`              |
-| **Shenandoah** | Low pause, concurrent                | `-XX:+UseShenandoahGC`     |
+- #### Garbage collector types
+  | GC Type        | Best For                             | JVM Option                |
+  |----------------|--------------------------------------|---------------------------|
+  | **Serial GC**  | Small apps, single-threaded         | `-XX:+UseSerialGC`         |
+  | **Parallel GC**| High throughput apps                | `-XX:+UseParallelGC`       |
+  | **G1 GC**      | Balanced needs (default since Java 9) | `-XX:+UseG1GC`            |
+  | **ZGC**        | Very low pause time, large heaps    | `-XX:+UseZGC`              |
+  | **Shenandoah** | Low pause, concurrent                | `-XX:+UseShenandoahGC`     |
