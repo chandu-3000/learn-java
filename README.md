@@ -91,3 +91,12 @@ The Object class in Java is the root of the class hierarchy. Every class in Java
   | **G1 GC**      | Balanced needs (default since Java 9) | `-XX:+UseG1GC`            |
   | **ZGC**        | Very low pause time, large heaps    | `-XX:+UseZGC`              |
   | **Shenandoah** | Low pause, concurrent                | `-XX:+UseShenandoahGC`     |
+
+    - **Serial GC**: Ideal for **small applications** or **single-threaded environments**.
+    - **Parallel GC**: Suitable for **high-throughput applications**, using multiple threads for garbage collection.
+    - **G1 GC**: The default GC since **Java 9**, designed to provide **balanced performance** for **low-latency applications**.
+    - **ZGC**: A **low-latency GC** suitable for **large heaps**, aiming for **very short pause times**.
+    - **Shenandoah**: A GC focused on **low pause times** with a **concurrent** collection strategy.
+
+    ## Conclusion
+    Choosing the right GC for your application can significantly impact performance, especially in large-scale or latency-sensitive systems.
