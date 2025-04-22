@@ -59,3 +59,6 @@ The Object class in Java is the root of the class hierarchy. Every class in Java
    │                                     │
    └─────────────────────────────────────┘
 ```
+Eden: Where new objects are created. It fills up fast.
+Survivor Spaces (S0 and S1): After surviving a few collections, objects are moved here temporarily.
+Old Generation: Where long-living objects go (objects that survived multiple cycles).
