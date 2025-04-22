@@ -59,6 +59,10 @@ The Object class in Java is the root of the class hierarchy. Every class in Java
    │                                     │
    └─────────────────────────────────────┘
 ```
-Eden: Where new objects are created. It fills up fast.
-Survivor Spaces (S0 and S1): After surviving a few collections, objects are moved here temporarily.
-Old Generation: Where long-living objects go (objects that survived multiple cycles).
+* Eden: Where new objects are created. It fills up fast.
+* Survivor Spaces (S0 and S1): After surviving a few collections, objects are moved here temporarily.
+* Old Generation: Where long-living objects go (objects that survived multiple cycles).
+* 
+Type | What It Cleans | Frequency | Cost | Pause
+Minor GC | Young Gen only | Happens often | Fast | Short
+Major GC | Old Gen (and full heap) | Less frequent | Slower | Long
