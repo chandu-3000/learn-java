@@ -40,3 +40,22 @@ The Object class in Java is the root of the class hierarchy. Every class in Java
 * notifyAll(): Wakes up all threads that are waiting on this object's monitor.
 * wait(): Causes the current thread to wait until another thread invokes the notify() method or the notifyAll() method for this object.
 
+
+### Garbage Collection (GC)
+* Java runs on the JVM, which uses Garbage Collection to automatically free up memory used by objects that are no longer needed.
+```kotlin
+              Java Heap
+   ┌─────────────────────────────────────┐
+   │                                     │
+   │      🔹 Young Generation            │
+   │       ┌────────┬────────┬────────┐  │
+   │       │  Eden  │  S0    │   S1   │  │
+   │       └────────┴────────┴────────┘  │
+   │                                     │
+   │      🔸 Old Generation              │
+   │       ┌──────────────────────────┐  │
+   │       │     Long-living Objects  │  │
+   │       └──────────────────────────┘  │
+   │                                     │
+   └─────────────────────────────────────┘
+```
