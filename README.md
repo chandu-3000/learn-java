@@ -78,3 +78,8 @@ The Object class in Java is the root of the class hierarchy. Every class in Java
     - Involves cleaning up the **Old Generation** (long-lived objects) and sometimes the full heap.
     - **Occurs less frequently** but is **slower**, causing **longer pause times**.
     - When Old Generation is full OR explicitly triggered (System.gc()).
+
+* During GC, JVM stops your application (all threads are paused). This is called a pause, and it varies:
+   - Minor GC pause: short (milliseconds)
+   - Major GC pause: can be longer (hundreds of ms or more)
+* This is why GC tuning matters in low-latency apps.
