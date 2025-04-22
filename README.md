@@ -64,10 +64,10 @@ The Object class in Java is the root of the class hierarchy. Every class in Java
 * Old Generation: Where long-living objects go (objects that survived multiple cycles).
 - #### GC Types
 
-- | Type      | What It Cleans      | Frequency        | Cost    | Pause  |
-- |-----------|---------------------|------------------|---------|--------|
-- | **Minor GC** | Young Gen only      | Happens often    | Fast    | Short  |
-- | **Major GC** | Old Gen (and full heap) | Less frequent    | Slower  | Long   |
+| Type      | What It Cleans      | Frequency        | Cost    | Pause  |
+|-----------|---------------------|------------------|---------|--------|
+| **Minor GC** | Young Gen only      | Happens often    | Fast    | Short  |
+| **Major GC** | Old Gen (and full heap) | Less frequent    | Slower  | Long   |
 
 - **Minor GC**: 
     - Focuses on cleaning up the **Young Generation** (new objects).
