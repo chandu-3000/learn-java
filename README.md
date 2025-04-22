@@ -98,6 +98,12 @@ The Object class in Java is the root of the class hierarchy. Every class in Java
   - **ZGC**: A **low-latency GC** suitable for **large heaps**, aiming for **very short pause times**.
   - **Shenandoah**: A GC focused on **low pause times** with a **concurrent** collection strategy.
 
+* Garbage Collection Phases:
+  - Mark Phase: The garbage collector identifies which objects are still reachable and which can be discarded.
+  - Sweep Phase: Unused objects are removed from memory.
+  - Compact Phase: The remaining objects are compacted to make space and reduce fragmentation.
+
+
 * To use specific GC, we can use such below command
   ```
   java -Xms512m -Xmx1024m -XX:+UseG1GC -XX:MaxGCPauseMillis=200 -Xlog:gc* -jar app.jar
