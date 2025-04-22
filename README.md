@@ -72,7 +72,9 @@ The Object class in Java is the root of the class hierarchy. Every class in Java
 - **Minor GC**: 
     - Focuses on cleaning up the **Young Generation** (new objects).
     - **Happens frequently**, but is generally **fast** and has a **short pause**.
+    - Occurs When Eden is full.
   
 - **Major GC**: 
     - Involves cleaning up the **Old Generation** (long-lived objects) and sometimes the full heap.
     - **Occurs less frequently** but is **slower**, causing **longer pause times**.
+    - When Old Generation is full OR explicitly triggered (System.gc()).
