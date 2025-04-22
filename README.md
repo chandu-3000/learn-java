@@ -83,7 +83,7 @@ The Object class in Java is the root of the class hierarchy. Every class in Java
    - Major GC pause: can be longer (hundreds of ms or more)
 * This is why GC tuning matters in low-latency apps.
 
-- #### Garbage collector types
+  - ##### Garbage collector types
   | GC Type        | Best For                             | JVM Option                |
   |----------------|--------------------------------------|---------------------------|
   | **Serial GC**  | Small apps, single-threaded         | `-XX:+UseSerialGC`         |
@@ -92,11 +92,10 @@ The Object class in Java is the root of the class hierarchy. Every class in Java
   | **ZGC**        | Very low pause time, large heaps    | `-XX:+UseZGC`              |
   | **Shenandoah** | Low pause, concurrent                | `-XX:+UseShenandoahGC`     |
 
-    - **Serial GC**: Ideal for **small applications** or **single-threaded environments**.
-    - **Parallel GC**: Suitable for **high-throughput applications**, using multiple threads for garbage collection.
-    - **G1 GC**: The default GC since **Java 9**, designed to provide **balanced performance** for **low-latency applications**.
-    - **ZGC**: A **low-latency GC** suitable for **large heaps**, aiming for **very short pause times**.
-    - **Shenandoah**: A GC focused on **low pause times** with a **concurrent** collection strategy.
-
-    ## Conclusion
-    Choosing the right GC for your application can significantly impact performance, especially in large-scale or latency-sensitive systems.
+  - **Serial GC**: Ideal for **small applications** or **single-threaded environments**.
+  - **Parallel GC**: Suitable for **high-throughput applications**, using multiple threads for garbage collection.
+  - **G1 GC**: The default GC since **Java 9**, designed to provide **balanced performance** for **low-latency applications**.
+  - **ZGC**: A **low-latency GC** suitable for **large heaps**, aiming for **very short pause times**.
+  - **Shenandoah**: A GC focused on **low pause times** with a **concurrent** collection strategy.
+  #### Conclusion
+  Choosing the right GC for your application can significantly impact performance, especially in large-scale or latency-sensitive systems.
