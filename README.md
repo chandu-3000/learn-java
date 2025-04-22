@@ -83,7 +83,7 @@ The Object class in Java is the root of the class hierarchy. Every class in Java
    - Major GC pause: can be longer (hundreds of ms or more)
 * This is why GC tuning matters in low-latency apps.
 
-  - ##### Garbage collector types
+* Garbage collector types
   | GC Type        | Best For                             | JVM Option                |
   |----------------|--------------------------------------|---------------------------|
   | **Serial GC**  | Small apps, single-threaded         | `-XX:+UseSerialGC`         |
