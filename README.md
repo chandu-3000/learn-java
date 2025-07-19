@@ -43,9 +43,6 @@ The Object class in Java is the root of the class hierarchy. Every class in Java
 ## Primitive types & their wrapper classes.
 
 Each primitive has a wrapper class which has some extra functionalities.
-
-# Java Primitives & Wrapper Classes - Complete Cheatsheet
-
 ```java
 // ========== PRIMITIVE TYPES & WRAPPER CLASSES ==========
 /*
