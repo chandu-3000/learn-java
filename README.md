@@ -40,7 +40,10 @@ The Object class in Java is the root of the class hierarchy. Every class in Java
 * notifyAll(): Wakes up all threads that are waiting on this object's monitor.
 * wait(): Causes the current thread to wait until another thread invokes the notify() method or the notifyAll() method for this object.
 
-## Java tricks for primitive & their wrapper classes.
+## Primitive types & their wrapper classes.
+
+Each primitive has a wrapper class which has some extra functionalities.
+
 ### 🔁 Autoboxing / Unboxing
 ```java
 int x = 5; Integer y = x; int z = y;
@@ -112,7 +115,120 @@ Integer a = null; if (a != null) int b = a;
 | Binary       | `toBinaryString(x)`        |
 
 ---
-Perfect for interview prep, CP, or Java quick-reference.
+
+## Comparable & Comparator.
+
+# Java Comparable vs Comparator Cheatsheet
+
+## 🔍 When to Use Comparable vs Comparator
+
+| Feature | `Comparable` | `Comparator` |
+|---------|-------------|-------------|
+| Interface | `Comparable<T>` | `Comparator<T>` |
+| Package | `java.lang` | `java.util` |
+| Sort logic location | Inside the class (natural order) | Outside the class (custom order) |
+| Method to implement | `compareTo(T o)` | `compare(T o1, T o2)` |
+| Use case | One default sort | Multiple or dynamic sorts |
+| Modifiable class? | Yes | No |
+
+## ✅ `Comparable` Example
+
+```java
+class Person implements Comparable<Person> {
+    String name;
+    int age;
+    
+    Person(String name, int age) {
+        this.name = name;
+        this.age = age;
+    }
+    
+    @Override
+    public int compareTo(Person other) {
+        return Integer.compare(this.age, other.age);
+    }
+}
+```
+
+## ✅ Sorting a List using `Comparable`:
+
+```java
+Collections.sort(list); // Uses compareTo()
+```
+
+## ✅ `Comparator` Cheatsheet
+
+### 🔸 Basic Comparator
+
+```java
+Comparator<Person> ageComparator = new Comparator<Person>() {
+    public int compare(Person p1, Person p2) {
+        return p1.age - p2.age;
+    }
+};
+```
+
+### 🔸 Lambda (Java 8+)
+
+```java
+list.sort((a, b) -> a.age - b.age);
+list.sort(Comparator.comparingInt(p -> p.age));
+```
+
+### 🔸 Reversed Order
+
+```java
+list.sort((a, b) -> b.age - a.age); // Manual
+list.sort(Comparator.comparingInt(p -> p.age).reversed()); // Built-in
+```
+
+### 🔸 Multiple Fields Comparison
+
+```java
+list.sort(Comparator.comparing((Person p) -> p.age)
+                   .thenComparing(p -> p.name));
+```
+
+### 🔸 Null Handling
+
+```java
+list.sort(Comparator.nullsFirst(Comparator.comparing(p -> p.age)));
+list.sort(Comparator.nullsLast(Comparator.comparing(p -> p.age)));
+```
+
+### 🔸 Comparing Strings (Lexicographical)
+
+```java
+list.sort(Comparator.comparing(p -> p.name));
+list.sort(Comparator.comparing(String::toLowerCase)); // Case-insensitive
+```
+
+### 🔸 Using Method References
+
+```java
+list.sort(Comparator.comparingInt(Person::getAge));
+list.sort(Comparator.comparing(Person::getName));
+```
+
+## 🧠 Built-in Comparator Methods Summary
+
+| Method | Purpose |
+|--------|---------|
+| `comparing(T::getX)` | Sort by field X |
+| `comparingInt/Long/Double(...)` | Primitive sorting |
+| `reversed()` | Reverse the order |
+| `thenComparing(...)` | Tie-breaker sort |
+| `nullsFirst(nullsLast(...))` | Handle nulls in sort |
+
+## 🎯 Quick Rules
+
+* Use `Comparable` when:
+  * There's a **natural/default** way to sort objects.
+  * You **own or can modify** the class.
+
+* Use `Comparator` when:
+  * You want **custom/multiple** sort strategies.
+  * You **can't modify** the class or need dynamic sorting.
 ## Garbage Collection (GC)
 * Java runs on the JVM, which uses Garbage Collection to automatically free up memory used by objects that are no longer needed.
 ```kotlin
