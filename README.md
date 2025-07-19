@@ -40,7 +40,79 @@ The Object class in Java is the root of the class hierarchy. Every class in Java
 * notifyAll(): Wakes up all threads that are waiting on this object's monitor.
 * wait(): Causes the current thread to wait until another thread invokes the notify() method or the notifyAll() method for this object.
 
+## Java tricks for primitive & their wrapper classes.
+### 🔁 Autoboxing / Unboxing
+```java
+int x = 5; Integer y = x; int z = y;
+```
 
+### 🔢 Char ↔ Int / ASCII
+```java
+char c = 'a'; int ascii = c; char d = (char) (ascii + 1);
+```
+
+### 🔠 Character Utilities
+```java
+Character.isDigit('5'); Character.isLetter('a');
+Character.toUpperCase('b'); Character.toLowerCase('D');
+```
+
+### 🔁 Char ↔ String
+```java
+char ch = 'a'; String s = String.valueOf(ch);
+char c = "hi".charAt(0);
+```
+
+### 🧮 Integer Methods
+```java
+Integer.parseInt("123"); String.valueOf(123);
+Integer.bitCount(5); Integer.toBinaryString(5);
+Integer.highestOneBit(10); Integer.MAX_VALUE;
+```
+
+### ⚖️ Equality & Identity
+```java
+Integer a = 128, b = 128; a == b -> false, a.equals(b) -> true;
+int x = 128, y = 128; x == y -> true;
+```
+
+### 🔃 Sorting Arrays
+```java
+char[] cs = {'b','a'}; Arrays.sort(cs);
+Integer[] a = {3,1}; Arrays.sort(a, Collections.reverseOrder());
+```
+
+### 📊 Frequency Count
+```java
+int[] freq = new int[26];
+for (char c : "abc".toCharArray()) freq[c - 'a']++;
+```
+
+### 🔁 Digit ↔ Char
+```java
+int d = 5; char c = (char) ('0' + d);
+char c = '8'; int d = c - '0';
+```
+
+### 🚨 Null Safety
+```java
+Integer a = null; if (a != null) int b = a;
+```
+
+### 📌 Summary Table
+| Case         | Trick                      |
+|--------------|----------------------------|
+| ASCII        | `(int) c`, `(char) (x + 'a')` |
+| Digit ↔ Char | `'0' + d`, `c - '0'`       |
+| Int ↔ String | `String.valueOf(i)`, `parseInt(s)` |
+| Sort         | `Arrays.sort()`            |
+| Reverse Sort | `Arrays.sort(arr, rev)`    |
+| Freq Count   | `freq[c - 'a']++`          |
+| Set Bits     | `Integer.bitCount(x)`      |
+| Binary       | `toBinaryString(x)`        |
+
+---
+Perfect for interview prep, CP, or Java quick-reference.
 ## Garbage Collection (GC)
 * Java runs on the JVM, which uses Garbage Collection to automatically free up memory used by objects that are no longer needed.
 ```kotlin
