@@ -44,77 +44,199 @@ The Object class in Java is the root of the class hierarchy. Every class in Java
 
 Each primitive has a wrapper class which has some extra functionalities.
 
-### 🔁 Autoboxing / Unboxing
-```java
-int x = 5; Integer y = x; int z = y;
-```
+# Java Primitives & Wrapper Classes - Complete Cheatsheet
 
-### 🔢 Char ↔ Int / ASCII
 ```java
-char c = 'a'; int ascii = c; char d = (char) (ascii + 1);
-```
+// ========== PRIMITIVE TYPES & WRAPPER CLASSES ==========
+/*
+byte    → Byte       (-128 to 127)
+short   → Short      (-32,768 to 32,767)
+int     → Integer    (-2^31 to 2^31-1)
+long    → Long       (-2^63 to 2^63-1)
+float   → Float      (32-bit IEEE 754)
+double  → Double     (64-bit IEEE 754)
+char    → Character  (16-bit Unicode)
+boolean → Boolean    (true/false)
+*/
 
-### 🔠 Character Utilities
-```java
-Character.isDigit('5'); Character.isLetter('a');
-Character.toUpperCase('b'); Character.toLowerCase('D');
-```
+// ========== AUTOBOXING / UNBOXING ==========
+int x = 5;
+Integer y = x;        // Autoboxing: primitive → wrapper
+int z = y;            // Unboxing: wrapper → primitive
 
-### 🔁 Char ↔ String
-```java
-char ch = 'a'; String s = String.valueOf(ch);
-char c = "hi".charAt(0);
-```
+// Integer cache: -128 to 127 are cached (same object reference)
+Integer a = 127, b = 127;  // a == b → true (same object)
+Integer c = 128, d = 128;  // c == d → false (different objects)
 
-### 🧮 Integer Methods
-```java
-Integer.parseInt("123"); String.valueOf(123);
-Integer.bitCount(5); Integer.toBinaryString(5);
-Integer.highestOneBit(10); Integer.MAX_VALUE;
-```
+// ========== CHAR ↔ INT / ASCII CONVERSIONS ==========
+char c = 'a';
+int ascii = c;                    // 97 (ASCII value)
+char d = (char) (ascii + 1);      // 'b'
+char upper = (char) (c - 32);     // 'A' (manual case conversion)
 
-### ⚖️ Equality & Identity
-```java
-Integer a = 128, b = 128; a == b -> false, a.equals(b) -> true;
-int x = 128, y = 128; x == y -> true;
-```
+// Common ASCII ranges
+// 'A'-'Z' → 65-90, 'a'-'z' → 97-122, '0'-'9' → 48-57
 
-### 🔃 Sorting Arrays
-```java
-char[] cs = {'b','a'}; Arrays.sort(cs);
-Integer[] a = {3,1}; Arrays.sort(a, Collections.reverseOrder());
-```
+// ========== CHARACTER UTILITIES ==========
+Character.isDigit('5');           // true
+Character.isLetter('a');          // true
+Character.isAlphabetic('α');      // true (Unicode letters)
+Character.isWhitespace(' ');      // true
+Character.toUpperCase('b');       // 'B'
+Character.toLowerCase('D');       // 'd'
+Character.getNumericValue('7');   // 7 (digit to int)
 
-### 📊 Frequency Count
-```java
+// ========== CHAR ↔ STRING CONVERSIONS ==========
+char ch = 'a';
+String s = String.valueOf(ch);    // "a"
+String s2 = Character.toString(ch); // "a" (alternative)
+char c = "hello".charAt(0);       // 'h'
+
+// String to char array
+char[] chars = "abc".toCharArray();
+String back = new String(chars);
+
+// ========== INTEGER METHODS & UTILITIES ==========
+// Parsing & Conversion
+Integer.parseInt("123");          // 123
+Integer.parseInt("FF", 16);       // 255 (hex)
+Integer.parseInt("1010", 2);      // 10 (binary)
+String.valueOf(123);              // "123"
+Integer.toString(123, 16);        // "7b" (hex)
+
+// Bit Operations
+Integer.bitCount(5);              // 2 (number of 1-bits)
+Integer.toBinaryString(5);        // "101"
+Integer.toHexString(255);         // "ff"
+Integer.highestOneBit(10);        // 8 (highest power of 2 ≤ n)
+Integer.lowestOneBit(10);         // 2 (lowest set bit)
+Integer.numberOfLeadingZeros(4);  // 29
+Integer.reverse(0x12345678);      // Reverse bits
+
+// Constants
+Integer.MAX_VALUE;                // 2147483647
+Integer.MIN_VALUE;                // -2147483648
+Integer.SIZE;                     // 32 (bits)
+
+// ========== EQUALITY & IDENTITY ==========
+Integer x = 128, y = 128;
+x == y;           // false (different objects, outside cache)
+x.equals(y);      // true (value comparison)
+
+int a = 128, b = 128;
+a == b;           // true (primitive comparison)
+
+// Safe comparison
+Objects.equals(x, y);  // true (null-safe)
+
+// ========== SORTING ARRAYS ==========
+// Primitive arrays
+int[] nums = {3, 1, 4};
+Arrays.sort(nums);                // [1, 3, 4]
+
+// Char arrays (lexicographical)
+char[] chars = {'c', 'a', 'b'};
+Arrays.sort(chars);               // ['a', 'b', 'c']
+
+// Wrapper arrays (with custom comparators)
+Integer[] arr = {3, 1, 4};
+Arrays.sort(arr);                             // [1, 3, 4]
+Arrays.sort(arr, Collections.reverseOrder()); // [4, 3, 1]
+Arrays.sort(arr, (a, b) -> b - a);           // [4, 3, 1] (lambda)
+
+// Partial sorting
+Arrays.sort(arr, 0, 2);           // Sort only first 2 elements
+
+// ========== FREQUENCY COUNTING ==========
+// Character frequency (lowercase a-z)
 int[] freq = new int[26];
-for (char c : "abc".toCharArray()) freq[c - 'a']++;
+String text = "hello";
+for (char c : text.toCharArray()) {
+    freq[c - 'a']++;
+}
+
+// All ASCII characters
+int[] asciiFreq = new int[128];
+for (char c : text.toCharArray()) {
+    asciiFreq[c]++;
+}
+
+// Using HashMap for any character
+Map<Character, Integer> charCount = new HashMap<>();
+for (char c : text.toCharArray()) {
+    charCount.put(c, charCount.getOrDefault(c, 0) + 1);
+}
+
+// ========== DIGIT ↔ CHAR CONVERSIONS ==========
+// Digit to char
+int digit = 5;
+char c = (char) ('0' + digit);    // '5'
+
+// Char to digit
+char ch = '8';
+int d = ch - '0';                 // 8
+
+// Handle hex digits
+char hexChar = 'A';
+int hexValue = Character.digit(hexChar, 16);  // 10
+
+// ========== NULL SAFETY ==========
+Integer nullable = null;
+if (nullable != null) {
+    int value = nullable;         // Safe unboxing
+}
+
+// Using Optional for null safety
+Optional.ofNullable(nullable)
+    .ifPresent(val -> System.out.println(val));
+
+// Default values
+int safe = nullable != null ? nullable : 0;  // Ternary
+int safer = Objects.requireNonNullElse(nullable, 0);  // Java 9+
+
+// ========== ADVANCED TRICKS ==========
+// Fast digit extraction
+int num = 12345;
+while (num > 0) {
+    int digit = num % 10;         // Extract last digit
+    num /= 10;                    // Remove last digit
+}
+
+// Fast power of 2 check
+boolean isPowerOf2 = (n > 0) && ((n & (n - 1)) == 0);
+
+// Swap without temp variable
+int a = 5, b = 10;
+a = a ^ b; b = a ^ b; a = a ^ b;  // Now a=10, b=5
+
+// Fast multiplication/division by powers of 2
+int doubled = n << 1;             // n * 2
+int halved = n >> 1;              // n / 2
+int times8 = n << 3;              // n * 8
+
+// Count digits in number
+int digitCount = String.valueOf(Math.abs(num)).length();
+// Or: int digitCount = (int) Math.log10(Math.abs(num)) + 1;
+
+// ========== SUMMARY TABLE ==========
+/*
+┌─────────────────┬──────────────────────────────────────┐
+│ Operation       │ Code                                 │
+├─────────────────┼──────────────────────────────────────┤
+│ ASCII           │ (int) c, (char) (x + 'a')           │
+│ Digit ↔ Char    │ '0' + d, c - '0'                     │
+│ Int ↔ String    │ String.valueOf(i), parseInt(s)       │
+│ Sort            │ Arrays.sort(arr)                     │
+│ Reverse Sort    │ Arrays.sort(arr, Collections.rev())  │
+│ Freq Count      │ freq[c - 'a']++                      │
+│ Set Bits        │ Integer.bitCount(x)                  │
+│ Binary          │ toBinaryString(x)                    │
+│ Hex             │ toHexString(x)                       │
+│ Power of 2      │ (n & (n-1)) == 0                     │
+│ Safe Unbox      │ obj != null ? obj : default          │
+└─────────────────┴──────────────────────────────────────┘
+*/
 ```
-
-### 🔁 Digit ↔ Char
-```java
-int d = 5; char c = (char) ('0' + d);
-char c = '8'; int d = c - '0';
-```
-
-### 🚨 Null Safety
-```java
-Integer a = null; if (a != null) int b = a;
-```
-
-### 📌 Summary Table
-| Case         | Trick                      |
-|--------------|----------------------------|
-| ASCII        | `(int) c`, `(char) (x + 'a')` |
-| Digit ↔ Char | `'0' + d`, `c - '0'`       |
-| Int ↔ String | `String.valueOf(i)`, `parseInt(s)` |
-| Sort         | `Arrays.sort()`            |
-| Reverse Sort | `Arrays.sort(arr, rev)`    |
-| Freq Count   | `freq[c - 'a']++`          |
-| Set Bits     | `Integer.bitCount(x)`      |
-| Binary       | `toBinaryString(x)`        |
-
----
 
 ## Comparable & Comparator.
 ```java
