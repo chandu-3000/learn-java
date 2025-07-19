@@ -117,118 +117,76 @@ Integer a = null; if (a != null) int b = a;
 ---
 
 ## Comparable & Comparator.
-
-# Java Comparable vs Comparator Cheatsheet
-
-## 🔍 When to Use Comparable vs Comparator
-
-| Feature | `Comparable` | `Comparator` |
-|---------|-------------|-------------|
-| Interface | `Comparable<T>` | `Comparator<T>` |
-| Package | `java.lang` | `java.util` |
-| Sort logic location | Inside the class (natural order) | Outside the class (custom order) |
-| Method to implement | `compareTo(T o)` | `compare(T o1, T o2)` |
-| Use case | One default sort | Multiple or dynamic sorts |
-| Modifiable class? | Yes | No |
-
-## ✅ `Comparable` Example
-
 ```java
+// ========== COMPARABLE ==========
+// Use when: Natural ordering, can modify class, single sort strategy
 class Person implements Comparable<Person> {
     String name;
     int age;
     
-    Person(String name, int age) {
-        this.name = name;
-        this.age = age;
-    }
-    
     @Override
     public int compareTo(Person other) {
-        return Integer.compare(this.age, other.age);
+        return Integer.compare(this.age, other.age); // Natural order by age
     }
 }
-```
 
-## ✅ Sorting a List using `Comparable`:
+// Usage: Collections.sort(list); // Uses compareTo()
 
-```java
-Collections.sort(list); // Uses compareTo()
-```
+// ========== COMPARATOR ==========
+// Use when: Custom ordering, can't modify class, multiple sort strategies
 
-## ✅ `Comparator` Cheatsheet
-
-### 🔸 Basic Comparator
-
-```java
-Comparator<Person> ageComparator = new Comparator<Person>() {
-    public int compare(Person p1, Person p2) {
-        return p1.age - p2.age;
-    }
+// 1. Anonymous Class
+Comparator<Person> ageComp = new Comparator<Person>() {
+    public int compare(Person p1, Person p2) { return p1.age - p2.age; }
 };
-```
 
-### 🔸 Lambda (Java 8+)
+// 2. Lambda Expressions (Java 8+)
+list.sort((a, b) -> a.age - b.age);                    // Manual comparison
+list.sort(Comparator.comparingInt(p -> p.age));        // Built-in method
 
-```java
-list.sort((a, b) -> a.age - b.age);
-list.sort(Comparator.comparingInt(p -> p.age));
-```
+// 3. Method References
+list.sort(Comparator.comparingInt(Person::getAge));    // Cleaner syntax
 
-### 🔸 Reversed Order
+// 4. Reversed Order
+list.sort(Comparator.comparingInt(p -> p.age).reversed());
 
-```java
-list.sort((a, b) -> b.age - a.age); // Manual
-list.sort(Comparator.comparingInt(p -> p.age).reversed()); // Built-in
-```
-
-### 🔸 Multiple Fields Comparison
-
-```java
+// 5. Multiple Fields (Chaining)
 list.sort(Comparator.comparing((Person p) -> p.age)
                    .thenComparing(p -> p.name));
-```
 
-### 🔸 Null Handling
-
-```java
+// 6. Null Handling
 list.sort(Comparator.nullsFirst(Comparator.comparing(p -> p.age)));
 list.sort(Comparator.nullsLast(Comparator.comparing(p -> p.age)));
+
+// 7. String Comparison
+list.sort(Comparator.comparing(p -> p.name));              // Case-sensitive
+list.sort(Comparator.comparing(p -> p.name.toLowerCase())); // Case-insensitive
+
+// ========== QUICK REFERENCE ==========
+/*
+COMPARABLE:
+- Interface: Comparable<T> (java.lang)
+- Method: compareTo(T o)
+- Returns: negative, 0, positive
+- Usage: One natural ordering per class
+
+COMPARATOR:
+- Interface: Comparator<T> (java.util)
+- Method: compare(T o1, T o2)
+- Returns: negative, 0, positive
+- Usage: Multiple custom orderings
+
+KEY METHODS:
+- comparing(Function)        - Sort by field
+- comparingInt/Long/Double() - Primitive types
+- reversed()                 - Reverse order
+- thenComparing()           - Secondary sort
+- nullsFirst/Last()         - Handle nulls
+*/
 ```
 
-### 🔸 Comparing Strings (Lexicographical)
 
-```java
-list.sort(Comparator.comparing(p -> p.name));
-list.sort(Comparator.comparing(String::toLowerCase)); // Case-insensitive
-```
 
-### 🔸 Using Method References
-
-```java
-list.sort(Comparator.comparingInt(Person::getAge));
-list.sort(Comparator.comparing(Person::getName));
-```
-
-## 🧠 Built-in Comparator Methods Summary
-
-| Method | Purpose |
-|--------|---------|
-| `comparing(T::getX)` | Sort by field X |
-| `comparingInt/Long/Double(...)` | Primitive sorting |
-| `reversed()` | Reverse the order |
-| `thenComparing(...)` | Tie-breaker sort |
-| `nullsFirst(nullsLast(...))` | Handle nulls in sort |
-
-## 🎯 Quick Rules
-
-* Use `Comparable` when:
-  * There's a **natural/default** way to sort objects.
-  * You **own or can modify** the class.
-
-* Use `Comparator` when:
-  * You want **custom/multiple** sort strategies.
-  * You **can't modify** the class or need dynamic sorting.
 ## Garbage Collection (GC)
 * Java runs on the JVM, which uses Garbage Collection to automatically free up memory used by objects that are no longer needed.
 ```kotlin
