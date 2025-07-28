@@ -304,6 +304,20 @@ KEY METHODS:
 */
 ```
 
+## final keyword usage.
+
+# Java Final Keyword Reference Guide
+
+| Context | Usage Example | Explanation | Can Reassign? | Notes |
+|---------|---------------|-------------|---------------|-------|
+| **Final Variable (Local)** | `final int x = 5;` | Once assigned, cannot be changed. | ❌ No | Must be initialized immediately or in all code paths before use. |
+| **Final Instance Variable** | `private final String name;` | Assigned once, usually in the constructor. | ❌ No | Allows immutability at the object level. |
+| **Final Static Variable** | `static final double PI = 3.14;` | Constant at the class level. Shared across all instances. | ❌ No | Naming convention: `ALL_CAPS`. Must be initialized during declaration or static block. |
+| **Final in Constructor** | `this.name = name;` in constructor | A `final` instance variable can be set once in the constructor. | ✅ Once (in constructor) | Must be initialized in **all** constructor code paths. |
+| **Final Method** | `final void print() {}` | Prevents method from being overridden in subclasses. | ✅ Can call | Useful when behavior should not be changed by subclass. |
+| **Final Class** | `final class Vehicle {}` | Prevents the class from being subclassed. | ✅ Can use | Often used for utility/helper classes (e.g., `java.lang.Math`). |
+| **Final Parameter** | `void greet(final String name)` | Prevents reassignment of method parameter inside the method. | ❌ No | Still can read/use the value. |
+| **Final with Anonymous Class** | `final int num = 10;` | Required to access local variables from enclosing method inside anonymous classes or lambdas. | ❌ No | Java 8+ allows effectively final (no need to explicitly mark). |
 
 
 ## Garbage Collection (GC)
