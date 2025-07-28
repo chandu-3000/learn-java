@@ -304,9 +304,7 @@ KEY METHODS:
 */
 ```
 
-## final keyword usage.
-
-# Java Final Keyword Reference Guide
+## Final keyword usage
 
 | Context | Usage Example | Explanation | Can Reassign? | Notes |
 |---------|---------------|-------------|---------------|-------|
